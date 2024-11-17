@@ -1,0 +1,72 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const authMiddleware = require('../middlewares/auth');
+
+const Category = require('../models/category');
+const Product = require('../models/product');
+
+const router = express.Router();
+
+router.use(authMiddleware);
+
+router.get('/categories-with-products', async (req, res) => {
+    try {
+        const categories = await Category.find()
+            .populate({
+                path: 'products', 
+                select: 'name description amount price' 
+            })
+            .lean();
+
+        if (categories.length === 0) {
+            return res.status(404).send({ error: 'No categories found.' });
+        }
+
+        return res.status(200).send(categories);
+    } 
+    catch (err) {
+        return res.status(500).send({
+            error: 'Error fetching categories with products.',
+            details: err.message
+        });
+    }
+});
+
+router.get('/:id/products', async (req, res) => {
+    try {
+        const { CategoryId } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(CategoryId)) {
+            return res.status(400).send({ error: 'Invalid category ID.' });
+        }
+
+        const category = await Category.findById(CategoryId);
+
+        if (!category) {
+            return res.status(404).send({ error: 'Category not found.' });
+        }
+
+        const products = await Product.find({ categories: CategoryId }) 
+            .select('name description amount price categories') 
+            .populate('categories', 'name description'); 
+
+        return res.status(200).send({
+            category: {
+                name: category.name,
+                description: category.description,
+            },
+            products: products.map(product => ({
+                name: product.name,
+                description: product.description,
+                amount: product.amount,
+                price: product.price,
+                categories: product.categories, 
+            })),
+        });
+    } 
+    catch (err) {
+        return res.status(500).send({ error: 'Error fetching products for category.', details: err.message });
+    }
+});
+
+module.exports = app => app.use('/general', router);
