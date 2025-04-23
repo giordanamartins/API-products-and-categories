@@ -1,17 +1,14 @@
-# API-products-and-categories
-> O projeto consiste em uma API para cadastro de usuários, categorias e produtos.
+# 🛍️ API para gerenciamento de produtos e categorias
+Uma API RESTful desenvolvida com Node.js e MongoDB para gerenciamento de usuários, categorias e produtos, incluindo autenticação JWT.
 
-## 💻 Pré-requisitos
-- Node.js e npm;
-- MongoDB;
-- Git.
-  
-## 🔭 Dependências utilizadas
-- Bcryptjs;
-- Body-parser;
-- Express;
-- JsonWebToken;
-- Mongoose.
+## 🔭 Tecnologias Utilizadas
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- Bcryptjs
+- JSON Web Token (JWT)
+- Body-parser
 
 ## 🚀 Instalando o projeto
 Clone o repositório da aplicação para sua máquina local:
@@ -29,7 +26,7 @@ node src/index.js
 ## 🧭 Rotas do projeto
 ### Cadastro de usuário:
 
-``POST`` http://localhost:3000/auth/register
+- **Endpoint:** `POST /auth/register`
 
 body: {
 
@@ -39,7 +36,7 @@ body: {
 
 ### Login de usuário:
 
-``POST`` http://localhost:3000/auth/authenticate
+- **Endpoint:** `POST /auth/authenticate`
 
 body: {
 
@@ -54,7 +51,7 @@ body: {
 
 ### Cadastro de categoria:
 
-``POST`` http://localhost:3000/category
+- **Endpoint:** `POST /category`
 
 body: {
 
@@ -64,15 +61,15 @@ body: {
 
 ### Listar categorias:
 
-``GET`` http://localhost:3000/category
+- **Endpoint:** `GET /category`
 
 ### Buscar categoria por ID:
 
-``GET`` http://localhost:3000/category/:id
+- **Endpoint:** `GET /category/:id`
 
 ### Edição de categoria:
 
-``PUT`` http://localhost:3000/category/:id
+- **Endpoint:** `PUT /category/:id`
 
 body: {
 
@@ -82,11 +79,11 @@ body: {
 
 ### Deletar categoria:
 
-``DELETE`` http://localhost:3000/category/:id
+- **Endpoint:** `DELETE /category/:id`
 
 ### Cadastro de produto:
 
-``POST`` http://localhost:3000/product
+- **Endpoint:** `POST /product`
 
 body: {
 
@@ -99,15 +96,15 @@ body: {
 
 ### Listar produtos:
 
-``GET`` http://localhost:3000/products
+- **Endpoint:** `GET /products`
 
 ### Buscar produto por ID:
 
-``GET`` http://localhost:3000/products/:id
+- **Endpoint:** `GET /products/:id`
 
 ### Edição de produto:
 
-``PUT`` http://localhost:3000/product/:id
+- **Endpoint:** `PUT /product/:id`
 
 body: {
 
@@ -120,12 +117,12 @@ body: {
 
 ### Deletar produto:
 
-``DELETE`` http://localhost:3000/product/:id
+- **Endpoint:** `DELETE /product/:id`
 
 ### Listar categorias e produtos:
 
-``GET`` http://localhost:3000/general/categories-with-products
+- **Endpoint:** `GET /general/categories-with-products`
 
 ### Listar produtos por ID de categoria:
 
-``GET`` http://localhost:3000/general/:CategoryId/products
+- **Endpoint:** `GET /general/:CategoryId/products`
