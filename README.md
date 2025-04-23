@@ -126,3 +126,7 @@ body: {
 ### Listar produtos por ID de categoria:
 
 - **Endpoint:** `GET /general/:CategoryId/products`
+
+---
+
+Feito com 💻 e ☕ por [@giordanamartins](https://github.com/giordanamartins)
